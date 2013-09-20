@@ -1,0 +1,108 @@
+.TH dbf2sql 1L \" -*- nroff -*-
+.SH NAME
+dbf2sql \- Insert xBase\-style .dbf\-files into an mSQL or Postgres95\-table
+.SH SYNOPSIS
+.B dbf2msql [options] dbf-file
+.br
+.B dbf2pg [options] dbf-file
+.br
+.br
+Options:
+.br
+[-v[v]] [-f] [-u | -l] [-c | -D] [-d database] [-t table]
+[-h host] [-s oldname=newname[,oldname=newname]] [-p primary key]
+[-s start] [-e end] 
+
+.SH DESCRIPTION
+This manual page
+documents the programs
+.BR dbf2msql
+and
+.BR dbf2pg.
+These take an xBase-style .dbf-file, and insert it into the specified
+database and table.
+.SS OPTIONS
+.TP
+.I "\-v"
+Display some status-messages.
+.TP
+.I "-vv"
+Also display progress.
+.TP
+.I "-f"
+Convert all field-names from the .dbf-file to lowercase.
+.TP
+.I "-u"
+Convert the contents of all fields to uppercase.
+.TP
+.I "-l"
+Convert the contents of all fields to lowercase.
+.TP
+.I "-c"
+Create the table specified with
+.IR \-t .
+If this table already exists, first
+.BR DROP
+it.
+.TP
+.I "-D"
+Delete the contents of the table specified with
+.IR \-t .
+Note that this table has to exists. An error is returned if this is not the
+case.
+.TP
+.I "-d database"
+Specify the database to use. An error is returned if this database does not
+exists. Default is "test".
+.TP
+.I "-t table"
+Specify the table to insert in. An error is returned if this table does not
+exists. Default is "test".
+.TP
+.I "-h host"
+Specify the host to which to connect. Default is "localhost".
+.TP
+.I "-s oldname=newname[,oldname=newname]"
+Change the name of a field from
+.BR oldname
+to
+.BR newname .
+This is mainly used to avoid using reserved SQL-keywords. Example:
+.br
+.br
+-s SELECT=SEL,COMMIT=doit
+.br
+.br
+This is done
+.BR before
+the
+.IR -f
+operator has taken effect!
+.TP
+.I "-p primary key"
+Specify which field to use as the primary key. Only for
+.BR dbf2msql .
+This operates on the fieldnames that are valid
+.BR AFTER
+substitutions with
+.IR -s
+are carried out!
+.TP
+.IR "-s start"
+Specify the first record-number in the xBase-file we will insert.
+.TP
+.IR "-e end"
+Specify the last record-number in the xBase-file we will insert.
+.SH ENVIRONMENT
+These programs are effected by the environment-variables as used
+by
+.B mSQL
+and
+.B Postgres95.
+See the documentation of those programs for more info.
+.SH BUGS
+At the moment none that I know, except for some lacking functionallity.
+.SH AVAILABILITY
+You can get the latest version by anonymous FTP from
+.B ftp.nerosworld.com/pub/msql/contrib/dbf2msql
+.B 

@@ -1,0 +1,59 @@
+.TH dbf2sql 1L \" -*- nroff -*-
+.SH NAME
+sql2dbf \- Generate xBase-style .dbf-files from SQL-tables
+.SH SYNOPSIS
+.B msql2dbf [options] dbf-file
+.br
+.br
+Options:
+.br
+[-v[v]] [-u | -l] [-d database] [-t table]
+[-h host] [-d] [-q query] [-p precision]
+.SH DESCRIPTION
+This manual page
+documents the program
+.BR msql2dbf.
+This takes a table, and writes out an xBase-style .dbf-file with the
+contents of that table.
+.SS OPTIONS
+.TP
+.I "\-v"
+Display some status-messages.
+.TP
+.I "-vv"
+Also display progress.
+.TP
+.I "-u"
+Convert the contents of all fields to uppercase.
+.TP
+.I "-l"
+Convert the contents of all fields to lowercase.
+.TP
+.I "-d database"
+Specify the database to use. An error is returned if this database does not
+exists. Default is "test".
+.TP
+.I "-t table"
+Specifies the table to select from. An error is returned if this database
+does not exists. Default is "test".
+.TP
+.I "-h host"
+Specify the host to which to connect. Default is "localhost".
+.TP
+.I "-q"
+Specify a custom query to use to fetch the data out of the table (or tables).
+.TP
+.I "-p precision"
+Specify the precision to use in the case of a
+.B REAL
+field. This is the part after the decimal point.
+.SH ENVIRONMENT
+These programs are effected by the environment-variables as used
+by
+.B mSQL.
+See the documentation of mSQL for more information on this.
+.SH BUGS
+At the moment none that I know, except for some lacking functionallity.
+.SH AVAILABILITY
+You can get the latest version by anonymous FTP from
+.B ftp.nerosworld.com/pub/msql/contrib/dbf2msql
